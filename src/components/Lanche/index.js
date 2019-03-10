@@ -23,7 +23,7 @@ export default class Lanche extends Component {
     this.setState({ ingredients: response.data });
   }
 
-  addIngredient = (ingredientName, ingredientValue, textColor) => {
+  addIngredient = async (ingredientName, ingredientValue, textColor) => {
     let bgColor;
 
     switch (ingredientName) {
@@ -47,17 +47,20 @@ export default class Lanche extends Component {
         break;
     }
 
-    this.setState({
-      ingredientList: [{
+    
+    await this.setState({
+      ingredientList: [...this.state.ingredientList, {
         id: Math.random(),
-        value: ingredientValue.toFixed(2),
+        value: ingredientValue,
         name: ingredientName,
         color: bgColor || "white",
         textColor: textColor || "inherit"
-      }, ...this.state.ingredientList]
+      }, ]
     })
 
-    this.setState({ checkoutValue: Number(this.state.checkoutValue + ingredientValue).toFixed(2) }, () => console.log(this.state.checkoutValue));
+    await this.setState({ checkoutValue: Number(Number(this.state.checkoutValue) + ingredientValue).toFixed(2) });
+
+    console.log(`Total: ${this.state.checkoutValue}`)
 
   }
 
@@ -135,9 +138,9 @@ export default class Lanche extends Component {
         </div>
         <IngredientTab
           ingredients={this.state.ingredients}
-          addIngredient={this.addIngredient.bind(this)}
-          ingredientFilter={this.ingredientFilter.bind(this)}
-          removeIngredient={this.removeIngredient.bind(this)}
+          addIngredient={this.addIngredient}
+          ingredientFilter={this.ingredientFilter}
+          removeIngredient={this.removeIngredient}
         />
         <CheckoutValue
           checkoutValue={this.state.checkoutValue}
