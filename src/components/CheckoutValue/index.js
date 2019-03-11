@@ -14,7 +14,7 @@ export default class CheckoutValue extends Component {
 
     return (
       <div className="animated fadeInUp bg-black sm:bg-white w-full fixed pin-b p-2 border-t border-grey shadow-inner select-none flex items-center justify-between" style={{ height: '80px' }}>
-        <Link to="/">
+        <Link to="/" onClick={() => window.scrollTo(0, 0)}>
           <button className="cursor-pointer bg-red border-b-4 border-red-dark rounded px-4 py-2 text-white font-bold hover:bg-red-light focus:outline-none text-sm">
             CANCELAR
           </button>
