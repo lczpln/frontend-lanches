@@ -1,6 +1,6 @@
 # Url
 
-https://app-food-lczpln.firebaseapp.com/
+https://app-snack.netlify.com
 
 ## Available Scripts
 
